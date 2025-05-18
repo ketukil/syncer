@@ -30,7 +30,7 @@ A robust tool for synchronizing files from a password-protected server with supp
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/laz-file-synchronizer.git
+   git clone https://github.com/ketukil/syncer.git
    cd laz-file-synchronizer
    ```
 
@@ -45,6 +45,25 @@ A robust tool for synchronizing files from a password-protected server with supp
    ```bash
    python syncer.py
    ```
+
+### Using with Virtual Environment
+
+```bash
+# Create virtual environment
+python -m venv venv
+
+# Activate virtual environment
+# On Windows
+venv\Scripts\activate
+# On Unix or MacOS
+source venv/bin/activate
+
+# Install requirements
+pip install -r requirements.txt
+
+# Run the program
+python syncer.py
+```
 
 ## Configuration
 
