@@ -4,7 +4,7 @@
 
 A robust tool for synchronizing files from a password-protected server with support for download resumption, progress tracking, regex filtering, and graceful termination.
 
-![File Synchronizer Screenshot](https://placeholder.com/image/syncer_screenshot.png)
+![File Synchronizer Main Screen](images/syncer_working.png)
 
 ## Features
 
@@ -31,7 +31,7 @@ A robust tool for synchronizing files from a password-protected server with supp
 
    ```bash
    git clone https://github.com/ketukil/syncer.git
-   cd laz-file-synchronizer
+   cd syncer
    ```
 
 2. Install dependencies:
