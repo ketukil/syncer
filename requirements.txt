@@ -1,0 +1,17 @@
+# Core dependencies
+requests>=2.28.0
+beautifulsoup4>=4.11.0
+
+# Optional dependencies
+# Uncomment if you want to use tqdm for progress bars instead of the built-in one
+# tqdm>=4.64.0
+
+# Development dependencies (optional)
+# pytest>=7.0.0
+# flake8>=5.0.0
+# black>=22.0.0
+
+# Packaging dependencies (optional)
+# pyinstaller>=5.6.0
+# nuitka>=1.1.0
+# cython>=0.29.30
