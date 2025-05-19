@@ -377,6 +377,8 @@ class ConfigManager:
 class ProgressBar:
     """Class to handle progress bar visualization."""
 
+    PROGRESS_BAR_CHARACTER = "█"
+
     def __init__(self, bar_width: int = 100, update_interval: float = 1.0):
         """
         Initialize the progress bar.
@@ -447,14 +449,14 @@ class ProgressBar:
 
         bar = (
             color
-            + "=" * filled_width
+            + self.PROGRESS_BAR_CHARACTER * filled_width
             + Colors.RESET
             + " " * (self.bar_width - filled_width)
         )
 
         # Format progress line
-        progress_bar = f"[{bar}] {color}{percent:.1f}%{Colors.RESET}"
-        info_line = f"{Colors.CYAN}{filename}{Colors.RESET}: {format_size(current)}/{format_size(total)} {speed_str} ETA: {eta_str}"
+        progress_bar = f" [ {bar} ] {color}{percent:5.1f} % {Colors.RESET}"
+        info_line = f"{Colors.CYAN}{filename}{Colors.RESET}: {format_size(current)}/{format_size(total)} ({speed_str}) ETA: {eta_str}" + " "*10
 
         # Update the console
         sys.stdout.write(f"\r{progress_bar}\n{info_line}")
@@ -1182,7 +1184,7 @@ class FileSynchronizer:
 
                 # Use direct print with colors instead of logger to preserve colors
                 print(
-                    f"  {Colors.CYAN}{name}{Colors.RESET}: {color}{info['percent_complete']:.1f}%{Colors.RESET} complete "
+                    f"  {Colors.CYAN}{name}{Colors.RESET}: {color}{info['percent_complete']:5.1f}%{Colors.RESET} complete "
                     f"({format_size(info['local_size'])} of {format_size(info['server_size'])})"
                 )
 
@@ -1237,7 +1239,7 @@ class FileSynchronizer:
                     else Colors.YELLOW if percent > 30 else Colors.RED
                 )
                 print(
-                    f"Resuming {Colors.CYAN}{file.name}{Colors.RESET} ({color}{percent:.1f}%{Colors.RESET} complete, {format_size(remaining_size)} remaining)"
+                    f"Resuming {Colors.CYAN}{file.name}{Colors.RESET} ({color}{percent:5.1f}%{Colors.RESET} complete, {format_size(remaining_size)} remaining)"
                 )
             else:
                 print(
@@ -1363,7 +1365,7 @@ class FileSynchronizer:
         print(separator)
 
 
-def format_size(size_bytes: int) -> str:
+def format_size(size_bytes: int|float) -> str:
     """
     Format bytes into human-readable format.
 
@@ -1376,11 +1378,11 @@ def format_size(size_bytes: int) -> str:
     if size_bytes < 1024:
         return f"{size_bytes} B"
     elif size_bytes < 1024 * 1024:
-        return f"{size_bytes/1024:.1f} KB"
+        return f"{size_bytes/1024:6.1f} kiB"
     elif size_bytes < 1024 * 1024 * 1024:
-        return f"{size_bytes/(1024*1024):.1f} MB"
+        return f"{size_bytes/(1024*1024):6.1f} MiB"
     else:
-        return f"{size_bytes/(1024*1024*1024):.1f} GB"
+        return f"{size_bytes/(1024*1024*1024):6.1f} GiB"
 
 
 def check_color_support():
